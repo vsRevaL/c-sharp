@@ -1,4 +1,4 @@
-# Core C# Programming Constructs, Part 1 - Chaper 3
+# Core C# Programming Constructs, Part 1 - Chapter 3
 
 ## Working with String
 
