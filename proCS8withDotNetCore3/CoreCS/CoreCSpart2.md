@@ -1,4 +1,14 @@
-# Core C# Programming Constructs, Part 2 - Chaper 4
+# Core C# Programming Constructs, Part 2 -Chapter 4
+
+## Summary
+
+- Arrays
+- Methods
+- Method parameters
+- enum
+- Structure
+- Value types, Reference Types,
+- Nullabe types, Tuples
 
 ## Understanding C# Arrays
 
@@ -67,6 +77,8 @@ Type: System.Boolean, Value: False
 Type: System.DateTime, Value: 3/24/1969 12:00:00 AM
 Type: System.String, Value: Form & Void
 ```
+
+<br><br>
 
 ## Methods
 
@@ -287,7 +299,6 @@ unassigned local variable.
 Before: Flip, Flop
 After: Flop, Flip
 ```
-
 ---
 
 ### The `in` Modifier (New 7.2)
@@ -392,7 +403,7 @@ DateTime.Now)
 }
 ```
 
-## Understanding Method Overloading
+### Understanding Method Overloading
 
 ```cs
 class Program
@@ -421,9 +432,725 @@ The caller can now simply invoke Add() with the required arguments, and the comp
 comply, given that the compiler is able to resolve the correct implementation to invoke with the provided 
 arguments.
 
+<br><br>
+
 ## Uderstanding the `enum` Type
 
-// To-do
+```cs
+// A custom enumeration
+enum EmpTypeEnum{
+    Manager, // = 0
+    Grunt, // = 1
+    Contractor, // = 2
+    VicePresident // = 3
+}
+```
+
+```cs
+// Begin with 102.
+enum EmpTypeEnum
+{
+ Manager = 102,
+ Grunt, // = 103
+ Contractor, // = 104
+ VicePresident // = 105
+}
+```
+
+```cs
+// Elements of an enumeration need not be sequential!
+enum EmpType
+{
+ Manager = 10,
+ Grunt = 1,
+ Contractor = 100,
+ VicePresident = 9
+}
+```
+
+### Controlling the Underlying Storage for an enum
+
+```cs
+// This time, EmpTypeEnum maps to an underlying byte.
+enum EmpTypeEnum : byte
+{
+ Manager = 10,
+ Grunt = 1,
+ Contractor = 100,
+ VicePresident = 9
+}
+```
+
+```cs
+// Compile-time error! 999 is too big for a byte!
+enum EmpTypeEnum : byte
+{
+ Manager = 10,
+ Grunt = 1,
+ Contractor = 100,
+ VicePresident = 999
+}
+```
+
+### Declaring enum Variables
+
+```cs
+enum EmpTypeEnum : int
+{
+    Manager = 10,
+    Grunt = 1,
+    Contractor = 100,
+    VicePresident = 999
+}
+
+class Program
+{
+
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("**** Fun with Enums *****");
+        // Make an EmpTypeEnum variable.
+        EmpTypeEnum emp = EmpTypeEnum.Contractor;
+        AskForBonus(emp);
+    }
+    // Enums as parameters.
+    static void AskForBonus(EmpTypeEnum e)
+    {
+        switch (e)
+        {
+            case EmpTypeEnum.Manager:
+                Console.WriteLine("How about stock options instead?");
+                break;
+            case EmpTypeEnum.Grunt:
+                Console.WriteLine("You have got to be kidding...");
+                break;
+            case EmpTypeEnum.Contractor:
+                Console.WriteLine("You already get enough cash...");
+                break;
+            case EmpTypeEnum.VicePresident:
+                Console.WriteLine("VERY GOOD, Sir!");
+                break;
+        }
+    }
+}
+```
+
+```cs
+static void ThisMethodWillNotCompile()
+{
+ // Error! SalesManager is not in the EmpTypeEnum enum!
+ EmpTypeEnum emp = EmpTypeEnum.SalesManager;
+ // Error! Forgot to scope Grunt value to EmpTypeEnum enum!
+ emp = Grunt;
+}
+```
+
+```cs
+    static void Main(string[] args)
+    {
+        Console.WriteLine("**** Fun with Enums *****");
+        // Make a contractor type.
+        EmpTypeEnum emp = EmpTypeEnum.Contractor;
+        AskForBonus(emp);
+        // Print storage for the enum.
+        Console.WriteLine("EmpTypeEnum uses a {0} for storage",
+        Enum.GetUnderlyingType(emp.GetType()));
+        Console.ReadLine();
+    }
+}
+```
+
+`ToString()`
+
+```cs
+    static void Main(string[] args)
+    {
+        EmpTypeEnum emp = EmpTypeEnum.Contractor;
+
+        // Prints out "emp is a Contractor".
+        Console.WriteLine("emp is a {0}.", emp.ToString());
+        Console.ReadLine();
+    }
+```
+
+To get the value:
+
+```cs
+    static void Main(string[] args)
+    {
+        EmpTypeEnum emp = EmpTypeEnum.Contractor;
+
+        // Prints out "emp is a Contractor".
+        Console.WriteLine("emp is a {0}.", (int)emp);
+        Console.ReadLine();
+    }
+```
+
+```cs
+        // Get all name-value pairs for incoming parameter.
+        Array enumData = Enum.GetValues(e.GetType());
+        Console.WriteLine("This enum has {0} members.", enumData.Length);
+        
+        // Now show the string name and associated value, using the D format
+        // flag (see Chapter 3).
+        for (int i = 0; i < enumData.Length; i++)
+        {
+            Console.WriteLine("Name: {0}, Value: {0:D}",
+            enumData.GetValue(i));
+        }
+```
+
+<br><br>
+
+## Understanding the Structure (aka Value Type)
+
+---
+■ Note a structure as a “lightweight class type,” given that 
+structures provide a way to define a type that supports encapsulation but cannot be used to build a family of 
+related types. When you need to build a family of related types through inheritance, you will need to make use 
+of class types.
+
+---
+
+```cs
+struct Point
+{
+    public int X;
+    public int Y;
+
+    // Add 1 to the (X, Y) position.
+    public void Increment()
+    {
+        X++; Y++;
+    }
+
+    // Subtract 1 from the (X, Y) position.
+    public void Decrement()
+    {
+        X--; Y--;
+    }
+
+    // Display the current postion.
+    public void Display()
+    {
+        Console.WriteLine($"X = {X}, Y = {Y}");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Point myPoint;
+        myPoint.X = 349;
+        myPoint.Y = 76;
+        myPoint.Display();
+        // Adjust the X and Y values.
+        myPoint.Increment();
+        myPoint.Display();
+    }
+}
+```
+
+---
+```cs
+X = 349, Y = 76
+X = 350, Y = 77
+```
+
+---
+
+### Creating Structure Variables
+
+```cs
+// Error! Did not assign Y value.
+Point p1;
+p1.X = 10;
+p1.Display();
+
+// OK! Both fields assigned before use.
+Point p2;
+p2.X = 10;
+p2.Y = 10;
+p2.Display();
+```
+
+```cs
+// Set all fields to default values
+// using the default constructor.
+Point p1 = new Point();
+// Prints X=0,Y=0.
+p1.Display();
+```
+
+### Readonly Structs
+
+Structs can also be marked as readonly if there is a need for them to be immutable. Immutable objects must 
+be set up at construction and, because they cannot be changed, can be more performant. When declaring a 
+struct as readonly, all of the properties must also be readonly. But, you might ask, how can a property be set 
+(as all properties must be on a struct) if it’s read-only? The answer is that the value must be set during the 
+construction of the struct.
+
+```cs
+readonly struct ReadOnlyPoint
+{
+    // Fields of the structure.
+    public int X { get; }
+    public int Y { get; }
+    // Display the current position and name.
+    public void Display()
+    {
+        Console.WriteLine($"X = {X}, Y = {Y}");
+    }
+    public ReadOnlyPoint(int xPos, int yPos, string name)
+    {
+        X = xPos;
+        Y = yPos;
+    }
+}
+```
+
+### Readonly members
+
+```cs
+struct PointWithReadOnly
+{
+    // Fields of the structure.
+    public int X;
+    public readonly int Y;
+    public readonly string Name;
+    // Display the current position and name.
+    public readonly void Display()
+    {
+        Console.WriteLine($"X = {X}, Y = {Y}, Name = {Name}");
+    }
+    // A custom constructor.
+    public PointWithReadOnly(int xPos, int yPos, string name)
+    {
+        X = xPos;
+        Y = yPos;
+        Name = name;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        PointWithReadOnly p3 = new PointWithReadOnly(50, 60, "Point w/RO");
+        p3.Display();
+    }
+}
+```
+
+### `ref` Structs (New 7.2)
+
+This requires all instances of the 
+struct to be stack allocated and cannot be assigned as a property of another class. The technical reason for 
+this is that ref structs cannot referenced from the heap.
+
+There are some additional limitations of ref structs:
+
+- They cannot be assigned to a variable of type object, dynamic, or an interface type.
+- They cannot implement interfaces.
+- They cannot be used as a property of a non-ref struct.
+- They cannot be used in async methods, in iterators, lambda expressions, or local 
+functions.
+
+### Disposable ref Structs (New 8.0)
+
+`ref` structs (and readonly ref structs) cannot implement an interface and 
+therefore cannot implement IDisposable. New in C# 8.0, ref structs and readonly ref structs can be made 
+disposable by adding a public void Dispose() method
+
+```cs
+ref struct DisposableRefStruct
+{
+    public int X;
+    public readonly int Y;
+    public readonly void Display()
+    {
+        Console.WriteLine($"X = {X}, Y = {Y}");
+    }
+    // A custom constructor.
+    public DisposableRefStruct(int xPos, int yPos)
+    {
+        X = xPos;
+        Y = yPos;
+        Console.WriteLine("Created!");
+    }
+    public void Dispose()
+    {
+        //clean up any resources here
+        Console.WriteLine("Disposed!");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var s = new DisposableRefStruct(50, 60);
+        s.Display();
+        s.Dispose();
+    }
+}
+```
+
+<br><br>
+
+## Understanding Value Types and Reference Types
+
+Unlike arrays, strings, or enumerations, C# structures do not have an identically named representation in 
+the .NET Core library (i.e., there is no System.Structure class) but are implicitly derived from System.
+ValueType. The role of System.ValueType is to ensure that the derived type (e.g., any structure) is allocated 
+on the stack, rather than the garbage-collected heap. Simply put, data allocated on the stack can be created 
+and destroyed quickly, as its lifetime is determined by the defining scope. Heap-allocated data, on the other 
+hand, is monitored by the .NET Core garbage collector and has a lifetime that is determined by a large 
+number of factors
+
+Given that value types are using value-based semantics, the lifetime of a structure (which includes all 
+numerical data types [int, float], as well as any enum or structure) is predictable. When a structure variable 
+falls out of the defining scope, it is removed from memory immediately.
+
+### Value Types, Reference Types, and the Assignment Operator
+
+When you assign one value type to another, a member-by-member copy of the field data is achieved. In the 
+case of a simple data type such as System.Int32, the only member to copy is the numerical value. However, 
+in the case of your Point, the X and Y values are copied into the new structure variable.
+
+```cs
+    static void ValueTypeAssignment()
+    {
+        Console.WriteLine("Assigning value types\n");
+        Point p1 = new Point(10, 10);
+        Point p2 = p1;
+        // Print both points.
+        p1.Display();
+        p2.Display();
+        // Change p1.X and print again. p2.X is not changed.
+        p1.X = 100;
+        Console.WriteLine("\n=> Changed p1.X\n");
+        p1.Display();
+        p2.Display();
+    }
+```
+
+---
+```cs
+Assigning value types
+X = 10, Y = 10
+X = 10, Y = 10
+=> Changed p1.X
+X = 100, Y = 10
+X = 10, Y = 10
+```
+
+---
+
+### Value Types Containing Reference Types
+
+```cs
+class ShapeInfo
+{
+    public string InfoString;
+    public ShapeInfo(string info)
+    {
+        InfoString = info;
+    }
+}
+
+struct Rectangle
+{
+    // The Rectangle structure contains a reference type member.
+    public ShapeInfo RectInfo;
+    public int RectTop, RectLeft, RectBottom, RectRight;
+    public Rectangle(string info, int top, int left, int bottom, int right)
+    {
+        RectInfo = new ShapeInfo(info);
+        RectTop = top; RectBottom = bottom;
+        RectLeft = left; RectRight = right;
+    }
+    public void Display()
+    {
+        Console.WriteLine("String = {0}, Top = {1}, Bottom = {2}, " +
+        "Left = {3}, Right = {4}",
+        RectInfo.InfoString, RectTop, RectBottom, RectLeft, RectRight);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        ValueTypeContainingRefType();
+    }
+    static void ValueTypeContainingRefType()
+    {
+        // Create the first Rectangle.
+        Console.WriteLine("-> Creating r1");
+        Rectangle r1 = new Rectangle("First Rect", 10, 10, 50, 50);
+        // Now assign a new Rectangle to r1.
+        Console.WriteLine("-> Assigning r2 to r1");
+        Rectangle r2 = r1;
+        // Change some values of r2.
+        Console.WriteLine("-> Changing values of r2");
+        r2.RectInfo.InfoString = "This is new info!";
+        r2.RectBottom = 4444;
+        // Print values of both rectangles.
+        r1.Display();
+        r2.Display();
+    }
+}
+```
+
+At this point, you have contained a reference type within a value type. The million-dollar question now 
+becomes “what happens if you assign one Rectangle variable to another?”
+
+---
+```cs
+-> Creating r1
+-> Assigning r2 to r1
+-> Changing values of r2
+String = This is new info!, Top = 10, Bottom = 50, Left = 10, Right = 50
+String = This is new info!, Top = 10, Bottom = 4444, Left = 10, Right = 50
+```
+
+---
+
+As you can see, when you change the value of the informational string using the r2 reference, the r1
+reference displays the same value. By default, when a value type contains other reference types, assignment 
+results in a copy of the references. In this way, you have two independent structures, each of which contains 
+a reference pointing to the same object in memory (i.e., a shallow copy). When you want to perform a deep 
+copy, where the state of internal references is fully copied into a new object, one approach is to implement 
+the ICloneable interface
+
+### Passing Reference Types by Value
+
+```cs
+class Person
+{
+    public string personName;
+    public int personAge;
+    // Constructors.
+    public Person(string name, int age)
+    {
+        personName = name;
+        personAge = age;
+    }
+    public Person() { }
+    public void Display()
+    {
+        Console.WriteLine("Name: {0}, Age: {1}", personName, personAge);
+    }
+}
+
+class Program{
+
+    static void Main(string[] args)
+    {
+        // Passing ref-types by value.
+        Person fred = new Person("Fred", 23);
+        Console.WriteLine("\nBefore by value call, Person is:");
+        fred.Display();
+        
+        SendAPersonByValue(fred);
+        Console.WriteLine("\nAfter by value call, Person is:");
+        fred.Display();
+    }
+
+    static void SendAPersonByValue(Person p)
+    {
+        // Change the age of "p"?
+        p.personAge = 90;
+        
+        //Will the caller see this reassignment?
+        p = new Person("Nikki", 99); // (u can't do this without the ref modifier)
+    }
+}    
+
+```
+
+---
+```cs
+Before by value call, Person is:
+Name: Fred, Age: 23
+After by value call, Person is:
+Name: Fred, Age: 99
+```
+---
+
+SendAPersonByValue() method is pointing to the same object as the caller, it is possible to alter the 
+object’s state data. What is not possible is to reassign what the reference is pointing to.
+
+### Passing Reference Types by Reference
+
+However when using the ref keyword:
+
+```cs
+    ...
+    Person fred = new Person("Fred", 23);
+    SendAPersonByReference(ref fred);
+    ...
+}    
+
+static void SendAPersonByReference(ref Person p)
+{
+        // Change some data of "p".
+        p.personAge = 555;
+
+        // "p" is now pointing to a new object on the heap!
+        p = new Person("Nikki", 999);
+}
+```
+
+---
+```cs
+Before by ref call, Person is:
+Name: Fred, Age: 23
+After by ref call, Person is:
+Name: Nikki, Age: 999
+```
+---
+
+So keep in mind that:
+
+- If a reference type is passed by reference, the callee may change the values of the 
+object’s state data, as well as the object it is referencing.
+
+- If a reference type is passed by value, the callee may change the values of the object’s 
+state data but not the object it is referencing.
+
+### Final Details Regarding Value Types and Reference Types
+
+| Intriguing Question | Value Type | Reference Type 
+| ------------------- | ---------- | --------------
+| Where are objects allocated? | On the stack | on the managed heap
+| How is variable represented? | vars are local copies | vars are pointing to the memory occupied by the allocated instance
+| What is the base type? | Implicitly extends `System.ValueType` | Can derive from any other type (except System.ValueType), as long as that type is not “sealed”
+| Can this type function as a base to other types? | No. Value types are always sealed and cannot be inherited from. | Yes. If the type is not sealed
+| What is the default parameter-passing behavior? | Vars are passed by value | For reference types, the reference is copied by value.
+| Can this type override `System.Object.Finalize()`? | No | Yes, indirectly
+| Can I define constructors for this type? | Yes, ur custom constructor must all have arguments (?) | But, of course!
+| When do vars of this type die? | When they fall out of the defining scope. | When the object is garbage collected
+
+Despite their differences, value types and reference types both have the ability to implement interfaces 
+and may support any number of fields, methods, overloaded operators, constants, properties, and events.
+
+<br><br>
+
+## Understanding C# Nullable Types
+
+- Value types cannot be set to `null`!
+
+```cs
+int myInt = null; // Compiler errors
+```
+
+- C# supports *nullable data types*
+
+```cs
+    static void Main(string[] args)
+    {
+        //int i = null;
+        int? i = null;
+        Console.WriteLine(i); // nothing
+        i++;
+        Console.WriteLine(i); // nothing
+        i = 0;
+        i++;
+        Console.WriteLine(i); //
+        i = null;
+    }
+```
+
+### Nullable value types
+
+```cs
+static void LocalNullableVariablesUsingNullable()
+{
+ // Define some local nullable types using Nullable<T>.
+ Nullable<int> nullableInt = 10;
+ Nullable<double> nullableDouble = 3.14;
+ Nullable<bool> nullableBool = null;
+ Nullable<char> nullableChar = 'a';
+ Nullable<int>[] arrayOfNullableInts = new Nullable<int>[10];
+}
+```
+
+### Nullable Reference Types
+
+`Page 200->`
+
+<br><br>
+
+## Tuples (New/Update 7.0)
+
+- Tuples are lightweight data structures that contain multiple fields.
+
+- In C# 7, tuples use the new ValueTuple data type instead of reference types, potentially saving 
+significant memory. The ValueTuple data type creates different structs based on the number of properties 
+for a tuple. An additional feature added in C# 7 is that each property in a tuple can be assigned a specific 
+name (just like variables), greatly enhancing the usability.
+
+- There are two important considerations for tuples:
+    * the fields are not validated.
+    * You cannot define your own methods.
+
+```cs
+(string, int, string) values = ("a", 5, "c");
+var values2 = ("a", 5, "c");
+
+Console.WriteLine($"First item: {values.Item1}");
+Console.WriteLine($"Second item: {values.Item2}");
+Console.WriteLine($"Third item: {values.Item3}");
+
+//Specific names can also be added:
+(string FirstLetter, int TheNumber, string SecondLetter) valuesWithNames = ("a", 5, "c");
+var valuesWithNames2 = (FirstLetter: "a", TheNumber: 5, SecondLetter: "c");
+
+```
+
+### Tuple Equality/Inequality (New 7.3)
+
+An added feature in C# 7.1 is the tuple equality (==) and inequality (!=). When testing for inequality, 
+the comparison operators will perform implicit conversions on datatypes within the tuples, including 
+comparing nullable and non-nullable tuples and/or properties. 
+
+### Tuples As Method Return Values
+
+```cs
+static (int a,string b,bool c) FillTheseValues()
+{
+ return (9,"Enjoy your string.",true);
+}
+
+var samples = FillTheseValues();
+Console.WriteLine($"Int is: {samples.a}");
+Console.WriteLine($"String is: {samples.b}");
+Console.WriteLine($"Boolean is: {samples.c}");
+```
+
+```cs
+//Switch expression with Tuples
+static string RockPaperScissors(string first, string second)
+{
+    return (first, second) switch
+    {
+        ("rock", "paper") => "Paper wins.",
+        ("rock", "scissors") => "Rock wins.",
+        ("paper", "rock") => "Paper wins.",
+        ("paper", "scissors") => "Scissors wins.",
+        ("scissors", "rock") => "Rock wins.",
+        ("scissors", "paper") => "Scissors wins.",
+        (_, _) => "Tie.",
+    };
+}
+```
+
+
+## Next chapter: OOP
 
 <br>
 <br>
