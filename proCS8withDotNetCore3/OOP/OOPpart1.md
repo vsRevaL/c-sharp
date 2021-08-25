@@ -22,8 +22,8 @@ definition, you are able to model your software after entities in the real world
 - objects must be allocated into memory using the new keyword, or complier error
 
 ```cs
-// Car c; // WRONG
-// c.speed = 50;
+// Car c; //
+// c.speed = 50; Compiler: That's illegal
 
 Car c = new Car(); // or Car c; c = new Car();
 c.speed = 50;
@@ -513,7 +513,7 @@ public class A {
 ```
 
 Here, it is permissible to apply the private access modifier on the nested type. However, non-nested 
-types (such as the SportsCar) can be defined only with the public or internal modifiers.
+types (such as the A) can be defined only with the public or internal modifiers.
 
 ```cs
 private class A { // compiler: Wait, thats illegal
