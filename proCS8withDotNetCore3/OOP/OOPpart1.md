@@ -523,6 +523,422 @@ private class A { // compiler: Wait, thats illegal
 
 ## The First Pillar: C#'s Encapsulation
 
+The concept of encapsulation revolves around the notion that an object’s data should not be directly 
+accessible from an object instance. Rather, class data is defined as private. If the object user wants to alter 
+the state of an object, it does so indirectly using public members. 
+
+Encapsulation provides a way to preserve the integrity of an object’s state data. Rather than defining 
+public fields (which can easily foster data corruption), you should get in the habit of defining private data, 
+which is indirectly manipulated using one of two main techniques.
+
+- You can define a pair of public accessor (get) and mutator (set) methods.
+- You can define a public property.
+
+```cs
+class Employee
+{
+    // Field data.
+    private string _empName;
+
+    // Accessor (get method).
+    public string GetName() => _empName;
+    // Mutator (set method).
+    public void SetName(string name)
+    {
+        // Do a check on incoming value
+        // before making assignment.
+        if (name.Length > 15)
+        {
+            Console.WriteLine("Error! Name length exceeds 15 characters!");
+        }
+        else
+        {
+            _empName = name;
+        }
+    }
+}
+```
+
+### Encapsulation Using Properties
+
+.NET Core 
+languages prefer to enforce data encapsulation state data using properties. Properties 
+are just a container for “real” accessor and mutator methods, named get and set, respectively. 
+
+ C# property is composed by defining a get scope (accessor) and set scope (mutator) directly within 
+the property itself.
+
+```cs
+// The 'int' represents the type of data this property encapsulates.
+public int Id // Note lack of parentheses.
+{
+ get { return _empId; }
+ set { _empID = value; }
+}
+```
+
+```cs
+class A
+{
+    private int _age;
+    public int Age { 
+        get { return _age; } 
+        set
+        {
+            if(value < 0)
+            {
+                //throw new Exception("Invalid age");
+                Console.WriteLine("Sorry playa, invalid age");
+            }
+            else
+            {
+                _age = value;
+            }
+        }
+    }
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        A a = new A();
+        a.Age = -5;
+        Console.WriteLine(a.Age);
+    }
+}
+```
+
+### Properties As Expression-Bodied Members (New 7.0)
+
+Both syntaxes compile down to the same IL, so which syntax you use is completely up to you.
+
+```cs
+class A
+{
+    private int _age;
+    public int Age
+    {
+        get => _age;
+        set => _age = value;
+    }
+}
+```
+
+### Using Properties Within a Class Definition
+
+**You can use the properties in ctor to avoid code duplication!**
+
+```cs
+class A
+{
+    private int _age;
+
+    public A(int _age)
+    {
+        Age = _age; // HERE!
+    }
+
+    public int Age
+    {
+        get { return _age; }
+        set
+        {
+            if (value < 0)
+            {
+                //throw new Exception("Invalid age");
+                Console.WriteLine("Sorry! Invalid range");
+            }
+            else
+            {
+                _age = value;
+            }
+        }
+    }
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        A a = new A(-5); // Sorry! Invalid range.
+        Console.WriteLine(a.Age);
+    }
+}
+```
+
+### Read-Only and Write-Only Properties
+
+When encapsulating data, you might want to configure a read-only property. To do so, simply omit the set
+block. Likewise, if you want to have a write-only property, omit the get block.
+
+```cs
+class A
+{
+    private int _age;
+
+    public A(int _age)
+    {
+        Age = _age; // OOPS! This is no longer possible if the property is read only. 
+    }
+
+    public int Age
+    {
+        get { return _age; }
+    }
+}
+```
+
+### Mixing Private and Public Get/Set Methods on Properties
+
+```cs
+class A
+{
+    private int _age;
+
+    public A(int _age)
+    {
+        Age = _age; // Now this is valid!!!
+    }
+
+    public int Age
+    {
+        get { return _age; }
+        private set { Age = value; } // Bcs of this line 
+    }
+}
+```
+
+### Defining Static Properties
+
+```cs
+class A
+{
+    private static int _age;
+
+    public A(int _age)
+    {
+        Age = _age;
+    }
+
+    public static int Age
+    {
+        get { return _age; }
+        private set { Age = value; }
+    }
+}
+```
+
+If you want to use this property in place of the previous static methods, you could update your Main() method as so:
+
+```cs
+Console.WriteLine($"Age is {A.Age}");
+```
+
+## Automatic Properties
+
+```cs
+class Car
+{
+    private string carName = "";
+    public string PetName
+    {
+        get { return carName; }
+        set { carName = value; }
+    }
+}
+```
+
+Ahh man, it's just a waste of code lines, in this cases you better do this:
+
+```cs
+class Car
+{
+    // Automatic properties! No need to define backing fields.
+    public string PetName { get; set; }
+    public int Speed { get; set; }
+    public string Color { get; set; }
+}
+```
+
+but be careful:
+
+```cs
+// Read-only property? This is OK!
+public int MyReadOnlyProp { get; }
+
+// Write only property? Nah, Error!
+// it's not possible to define a write-only 
+property.
+public int MyWriteOnlyProp { set; }
+```
+
+### Interacting with Automatic Properties
+
+```cs
+class Garage
+{
+    // The hidden int backing field is set to zero!
+    public int NumberOfCars { get; set; }
+    
+    // The hidden Car backing field is set to null!
+    public Car MyAuto { get; set; }
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        Garage g = new Garage();
+        
+        // OK, prints default value of zero.
+        Console.WriteLine("Number of Cars: {0}", g.NumberOfCars);
+        
+        // Runtime error! Backing field is currently null!
+        Console.WriteLine(g.MyAuto.PetName);
+
+    }
+}
+```
+
+To solve this problem, you could update the class constructors to ensure the object comes to life in a 
+safe manner. Here’s an example:
+
+```cs
+public Garage()
+{
+    MyAuto = new Car();
+    NumberOfCars = 1;
+}
+```
+
+### Initialization of Automatic Properties
+
+```cs
+class Garage
+{
+    public int NumberOfCars { get; set; } = 5;
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        Garage g = new Garage();
+        Console.WriteLine(g.NumberOfCars); // 5
+    }
+}
+```
+
+## Understanding Object Initialization Syntax
+
+```cs
+Point finalPoint = new Point { X = 30, Y = 30 };
+```
+
+### Initializing Data with Initialization Syntax
+
+The “has-a” relationship 
+allows you to compose new classes by defining member variables of existing classes.
+
+```cs
+class Point
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+    public Point(int xVal, int yVal)
+    {
+        X = xVal;
+        Y = yVal;
+    }
+    public Point() { }
+    public void DisplayStats()
+    {
+        Console.WriteLine("[{0}, {1}]", X, Y);
+    }
+}
+
+class Rectangle
+{
+    private Point topLeft = new Point();
+    private Point bottomRight = new Point();
+    public Point TopLeft
+    {
+        get { return topLeft; }
+        set { topLeft = value; }
+    }
+    public Point BottomRight
+    {
+        get { return bottomRight; }
+        set { bottomRight = value; }
+    }
+    public void DisplayStats()
+    {
+        Console.WriteLine("[TopLeft: {0}, {1}, {2} BottomRight: {3}, {4}, {5}]",
+    }
+}
+```
+
+## Working with Constant Field Data
+
+C# offers the const keyword to define constant data, which can never change after the initial assignment.
+
+```cs
+class MyMathClass
+{
+    public const double PI = 3.14;
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("***** Fun with Const *****\n");
+        Console.WriteLine("The value of PI is: {0}", MyMathClass.PI);
+        // Error! Can't change a constant!
+        // MyMathClass.PI = 3.1444;
+        Console.ReadLine();
+    }
+}
+```
+
+
+- **constant fields of a class are implicitly static.**
+ 
+- Regardless of where you define a constant piece of data, the one point to always remember is that **the 
+initial value assigned to the constant must be specified at the time you define the constant**.
+
+```cs
+class MyMathClass
+{
+    // Try to set PI in ctor?
+    public const double PI;
+    public MyMathClass()
+    {
+        // Not possible- must assign at time of declaration.
+        PI = 3.14;
+    }
+}
+```
+
+### Read-Only Fields
+
+**Like a constant**, a read-only field cannot be changed after the initial assignment 
+compile-time error. However, unlike a constant, **the value assigned to a read-only field can be determined at 
+runtime** and, therefore, can legally be assigned within the scope of a **constructor but nowhere else**.
+
+```cs
+class MyMathClass
+{
+    // Read-only fields can be assigned in ctors,
+    // but nowhere else.
+    public readonly double PI;
+    public MyMathClass()
+    {
+        PI = 3.14;
+    }
+}
+```
+
 <br>
 <br>
 <br>
