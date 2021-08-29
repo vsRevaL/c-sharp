@@ -4,6 +4,21 @@
 
 # Understanding Encapsulation
 
+- Introducing the C# Class Type
+- Allocation Objects with the new Keyword
+- Understanding Constructors
+- Defining Custom Constructors
+- The Role of the this Keyword
+- Understanding the static Keyword
+- Defining the Pillars of OOP
+- C# Acces Modifiers (Updated 7.2)
+- The First Pillar: C#'s Encapsulation
+- Automatic Properties
+- Understanding Object Initialization Syntax
+- Working with Constant Field Data
+
+<br>
+
 ## Introducing the C# Class Type
 
 As far as the .NET platform is concerned, the most fundamental programming construct is the class type. 
