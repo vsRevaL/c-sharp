@@ -155,6 +155,8 @@ operations) or a class that implements IActionResult, such as ActionResult or th
 Model binding is the process where ASP.NET Core takes the name/value pairs available and attempts to 
 reconstitute the action parameter types using reflection and recursion. 
 
+[ in process.. ]
+
 <br>
 <br>
 <br>
