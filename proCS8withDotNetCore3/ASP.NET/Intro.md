@@ -100,7 +100,7 @@ methods:
 | `ViewDataTempDataViewBag` | Provide data to the view through the ViewDataDictionary, TempDataDictionary, and dynamic ViewBag transport.
 | `View` | Returns a ViewResult (derived from ActionResult) as the HTTP response. Defaults to view of the same name is the action method, with the option of specifying a specific view. All options allow specifying a ViewModel that is strongly typed and sent to the View. (?????)
 | `PartialView` | Returns a PartialViewResult to the response pipeline. 
-| `ViewComponenet` | Returns a ViewComponentResult to the response pipeline.
+| `ViewComponent` | Returns a ViewComponentResult to the response pipeline.
 | `Json` | Returns a JsonResult containing an object serialized as JSON as the response.
 | `OnActionExecuting` | Executes before an action method executes.
 | `OnActionExecutionAsync` | Async version of OnActionExecuting.
@@ -138,7 +138,7 @@ services, in addition to **helper methods** for returning HTTP status codes.
 | `Ok` | OkResult | 200
 | `NotFound` | ...Result | 404
 | `BadRequest` | .. | 400
-| `Created ` | .. | 201
+| `Created` | .. | 201
 | `CreatedAtAction` | .. | 201
 | `CreatedAtRoute` | .. | 201
 | `Accepted` | .. | 202

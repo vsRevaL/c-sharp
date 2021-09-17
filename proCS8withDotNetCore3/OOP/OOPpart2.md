@@ -16,7 +16,7 @@
 
 ## The Basic Mechanics of Inheritance
 
-- "is-a", "has-a" relatinships
+- "is-a", "has-a" relationships
 
 ```cs
 class Car
@@ -562,7 +562,7 @@ same internal state values (i.e., value-based semantics).
 
 | Instance Method of Object Class | Meaning ing Life 
 | ------------------------------- | ---------------- 
-| `Equals()` | By default, this method returns true only if the items being compared refer to the same item in memory. Thus, Equals() is used to compare object references, not the state of the object. Typically, this method is overridden to return true only if the objects being compared have the same internal state values (i.e., value-based semantics). <br> Be aware that if you override Equals(), you should also override GetHashCode(), as these methods are used internally by Hashtabletypes to retrieve subobjects from the container.
+| `Equals()` | By default, this method returns true only if the items being compared refer to the same item in memory. Thus, Equals() is used to compare object references, not the state of the object. Typically, this method is overridden to return true only if the objects being compared have the same internal state values (i.e., value-based semantics). <br> Be aware that if you override Equals(), you should also override GetHashCode(), as these methods are used internally by Hashtabletypes to retrieve sub-objects from the container.
 | `GetHashCode()` | This method returns an int that identifies a specific object instance.
 | `ToString()` | This method returns a string representation of this object, using the <namespace>.<type name> format (termed the fully qualified name). This method will often be overridden by a subclass to return a tokenized string of name/value pairs that represent the object’s internal state, rather than its fully qualified name.
 | `GetType()` | This method returns a Type object that fully describes the object you are currently referencing. In short, this is a Runtime Type Identification (RTTI) method available to all objects.

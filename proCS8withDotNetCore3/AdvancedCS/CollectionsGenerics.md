@@ -26,7 +26,7 @@ Useful Types of System.Collections:
 | ------------------------ | ------- | ----------------
 | ArrayList | a dynamically sized collection of objects listed in sequential order | IList, ICollection, IEnumerable, ICloneable
 | BitArray | | ICollection, IEnumerable, ICloneable
-| Hashtable | key-value pairs | IDictionary, ICollection, IEnumerable, IClonable
+| Hashtable | key-value pairs | IDictionary, ICollection, IEnumerable, ICloneable
 | Queue | std first-in, first-out collection
 | SortedList | sorted key-value pairs | IDictionary, ICollection,IEnumerable, and ICloneable
 | Stack | last-in, first-out stack providing push and pop | ICollection, IEnumerable and ICloneable
@@ -48,7 +48,7 @@ Key Interfaces Supported by Classes of System.Collections:
 
 ## The Problems of Nongeneric Collections
 
-- performance issuess
+- performance issues
 - safety type issues
 
 in the other hand:

@@ -11,7 +11,7 @@
 Specifically, a delegate 
 maintains three important pieces of information:
 
-- The address ot the method on wich it makes calls
+- The address ot the method on which it makes calls
 - The parameters (if any) of this method
 - The return type (if any) of this method
 
@@ -84,6 +84,7 @@ static void DisplayDelegateInfo(Delegate delObj)
     }
 }
 ```
+
 ---
 ```cs
 Method Name: Int32 Add(Int32, Int32)
@@ -705,7 +706,8 @@ parameters prototyped by the delegate type
 
 ### Accessing Local Variables
 
-Anonymous methods can acces local vars, they're termed *outer variables*. A few important points about them:
+Anonymous methods can access local vars, they're termed *outer variables*. A few important points about them:
+
 - An anonymous method cannot access ref or out parameters of the defining method.
 - An anonymous method cannot have a local variable with the same name as a local 
 variable in the outer method.

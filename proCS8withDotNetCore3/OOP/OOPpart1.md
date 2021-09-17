@@ -11,7 +11,7 @@
 - The Role of the this Keyword
 - Understanding the static Keyword
 - Defining the Pillars of OOP
-- C# Acces Modifiers (Updated 7.2)
+- C# Access Modifiers (Updated 7.2)
 - The First Pillar: C#'s Encapsulation
 - Automatic Properties
 - Understanding Object Initialization Syntax
@@ -319,7 +319,7 @@ your static data.
     }
     ...
 ```
-After compilnig again:
+After compiling again:
 
 ---
 ```cs
@@ -473,9 +473,9 @@ redefining how they respond to the same request.
 
 <br>
 
-## C# Acces Modifiers (Updated 7.2)
+## C# Access Modifiers (Updated 7.2)
 
-| C# Acces Modifier | May Be Apllied To | Meaning in Life
+| C# Access Modifier | May Be Applied To | Meaning in Life
 | ----------------- | ----------------- | ----------------
 | public | Types or type members | Can be accessed even from Mars
 | private | Type members or nested types | Can be accessed only by the class (or structure) that defines the item
@@ -486,7 +486,7 @@ redefining how they respond to the same request.
 
 <br>
 
-### The Default Acces Modifiers
+### The Default Access Modifiers
 
 By default, type members are implicitly private, while types are implicitly internal.
 
@@ -534,6 +534,7 @@ types (such as the A) can be defined only with the public or internal modifiers.
 private class A { // compiler: Wait, thats illegal
 }
 ```
+
 <br>
 
 ## The First Pillar: C#'s Encapsulation
