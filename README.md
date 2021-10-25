@@ -83,6 +83,22 @@ Folder structure and topics (found in the `.md` files).
     * The Third Pillar of OOP: C#’s Polymorphic Support
     * Understanding Base Class/Derived Class Casting Rules
     * The Super Parent Class: System.Object
+	
+- OOPpart4.md [Working with Interfaces](proCS8withDotNetCore3/OOP/OOPpart4.md)
+	* Understanding Interface Types
+	* Defining Custom Interfaces
+	* Implementing an Interface
+	* Invoking Interface Members at the Object Level
+	* Default Implementations
+	* Static Constructors and Members
+	* Interfaces As Parameters
+	* Interfaces As Return Values
+	* Arrays of Interface Types
+	* Explicit Interface Implementation
+	* Designing Interface Hierarchies
+	* The IEnumerable and IEnumerator Interfaces
+	* The ICloneable Interface
+	* The IComparable Interface
 
 
 <br>
