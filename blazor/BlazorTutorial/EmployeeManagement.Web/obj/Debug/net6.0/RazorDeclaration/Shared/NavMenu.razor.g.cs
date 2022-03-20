@@ -90,7 +90,7 @@ using EmployeeManagement.Web.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 20 "D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\Shared\NavMenu.razor"
+#line 25 "D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

@@ -7,7 +7,7 @@ namespace EmployeeManagement.Web.Pages
     public partial class EmployeeListBase : ComponentBase
     {
         [Inject]
-        public IEmployeeService EmployeeService { get; set; }   
+        public IEmployeeService EmployeeService { get; set; }
 
         public IEnumerable<Employee> Employees { get; set; }
 
