@@ -83,7 +83,7 @@ using EmployeeManagement.Web.Shared;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/DataBindingDemo")]
-    public partial class DataBindingDemo : DataBindingDemoBase
+    public partial class DatabindingDemo : DataBindingDemoBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
