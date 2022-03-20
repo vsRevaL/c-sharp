@@ -55,4 +55,5 @@ D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.
 D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\ref\EmployeeManagement.Web.dll
 D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\EmployeeManagement.Web.pdb
 D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\EmployeeManagement.Web.genruntimeconfig.cache
-D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\RazorDeclaration\Pages\DatabindingDemo.razor.g.cs
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\RazorDeclaration\Pages\DataBindingDemo.razor.g.cs
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\Razor\Pages\DataBindingDemo.razor.g.cs
