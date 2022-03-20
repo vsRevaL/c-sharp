@@ -1,0 +1,11 @@
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\bin\Debug\net6.0\EmployeeManagement.Models.deps.json
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\bin\Debug\net6.0\EmployeeManagement.Models.dll
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\bin\Debug\net6.0\ref\EmployeeManagement.Models.dll
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\bin\Debug\net6.0\EmployeeManagement.Models.pdb
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\obj\Debug\net6.0\EmployeeManagement.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\obj\Debug\net6.0\EmployeeManagement.Models.AssemblyInfoInputs.cache
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\obj\Debug\net6.0\EmployeeManagement.Models.AssemblyInfo.cs
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\obj\Debug\net6.0\EmployeeManagement.Models.csproj.CoreCompileInputs.cache
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\obj\Debug\net6.0\EmployeeManagement.Models.dll
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\obj\Debug\net6.0\ref\EmployeeManagement.Models.dll
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Models\obj\Debug\net6.0\EmployeeManagement.Models.pdb

@@ -701,6 +701,157 @@ P3 and P4 are pointing to the same object: False
 ---
 
 <br>
+
+## Example Equals, GetHashCode, CompareTo
+
+```cs
+using System.Collections.Generic;
+using System;
+
+namespace Test
+{
+    public class Bike
+    {
+
+    }
+
+    public class Car : IComparable
+    {
+        private int _speed;
+
+        public int Speed {
+            get
+            {
+                return _speed;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    _speed = value;
+                }
+            }
+        }
+
+        public Car(int speed)
+        {
+            this.Speed = speed;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Car);
+        }
+
+        public bool Equals(Car other)
+        {
+            return other != null && other.Speed == this.Speed;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Speed.GetHashCode() * 17;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("i'm going {0} km/h", Speed);
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                throw new ArgumentException();
+            }
+
+            Car other = obj as Car;
+            if (other != null)
+            {
+                return this.Speed.CompareTo(other.Speed);
+            }
+            throw new ArgumentException();
+        }
+    }
+
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Car c1 = new Car(50);
+            Car c2 = new Car(80);
+            Car c4 = new Car(10);
+            Car c3 = new Car(10);
+            Car c5 = new Car(30);
+            Car c6 = new Car(30);
+            Car c7 = new Car(30);
+            List<Car> list = new List<Car>();
+            list.AddRange(new Car[]{ c1, c2, c3, c4, c5, c6, c7});
+            Console.WriteLine(string.Join("\n", list));
+            list.Sort();
+            Console.WriteLine("\nAfter sorting:");
+            Console.WriteLine(string.Join("\n", list));
+
+            Console.WriteLine("\nAfter the HashSet:");
+            HashSet<Car> bag = new HashSet<Car>(list);
+            Console.WriteLine(string.Join("\n", bag));
+
+            
+            Dictionary<Car, int> map = new Dictionary<Car, int>();
+            foreach (Car car in list)
+            {
+                if (map.ContainsKey(car))
+                {
+                    map[car]++;
+                }
+                else
+                {
+                    map.Add(car, 1);
+                }
+            }
+            Console.WriteLine("\nAfter the Dictionary:");
+            Console.WriteLine(string.Join("\n", map));
+        }
+    }
+}
+```
+
+```cs
+i'm going 50 km/h
+i'm going 80 km/h
+i'm going 10 km/h
+i'm going 10 km/h
+i'm going 30 km/h
+i'm going 30 km/h
+i'm going 30 km/h
+
+After sorting:
+i'm going 10 km/h
+i'm going 10 km/h
+i'm going 30 km/h
+i'm going 30 km/h
+i'm going 30 km/h
+i'm going 50 km/h
+i'm going 80 km/h
+
+After the HashSet:
+i'm going 10 km/h
+i'm going 30 km/h
+i'm going 50 km/h
+i'm going 80 km/h
+
+After the Dictionary:
+[i'm going 10 km/h, 2]
+[i'm going 30 km/h, 3]
+[i'm going 50 km/h, 1]
+[i'm going 80 km/h, 1]
+```
+
+<br>
 <br>
 <br>
 <br>

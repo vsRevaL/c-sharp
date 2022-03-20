@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "2e9a60b8-840d-4c24-a796-ef1359311972": {
+      "ProjectGuid": "2e9a60b8-840d-4c24-a796-ef1359311972",
+      "DisplayName": "EmployeeManagement.Models",
+      "ColorIndex": 0
+    },
+    "cd71f845-2bed-4c4f-a375-e9fca416f76a": {
+      "ProjectGuid": "cd71f845-2bed-4c4f-a375-e9fca416f76a",
+      "DisplayName": "EmployeeManagement.Web",
+      "ColorIndex": 1
+    },
+    "78acec88-5f15-48db-bdc4-b244fb3eb4b2": {
+      "ProjectGuid": "78acec88-5f15-48db-bdc4-b244fb3eb4b2",
+      "DisplayName": "EmployeeManagement.Api",
+      "ColorIndex": 2
+    },
+    "94e0ca33-00f6-4b12-869d-e5282351d3d3": {
+      "ProjectGuid": "94e0ca33-00f6-4b12-869d-e5282351d3d3",
+      "DisplayName": "EmployeeManagement.Api",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 4
+}

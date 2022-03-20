@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAss", "WebAss\WebAss.csproj", "{9542D16C-6C66-496E-A80F-FD891707BE92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9542D16C-6C66-496E-A80F-FD891707BE92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9542D16C-6C66-496E-A80F-FD891707BE92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9542D16C-6C66-496E-A80F-FD891707BE92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9542D16C-6C66-496E-A80F-FD891707BE92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F3CE4D0-6633-439B-B3AD-8148CB2A4096}
+	EndGlobalSection
+EndGlobal

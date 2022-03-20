@@ -1,0 +1,59 @@
+﻿@page "/grid";
+
+@using BlazorServer.Data
+@inject GridBase GridClass
+
+<style>
+table{
+    border: 1px solid black;
+}
+
+table td{
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    background-color: aliceblue;
+}
+
+.g {
+    background-color: red;
+}
+
+</style>
+
+<h3>Grid</h3>
+
+<table>
+
+    @for (int i = 0; i < _grid.Count - 1; i++)
+    {
+        <tr>
+            @for (int j = 0; j < _grid[i].Count - 1; j++)
+            {
+                @if (_grid[i][j] == 1)
+                {
+                    <td class="g" @onclick="() => UpdateColor(i, j)"></td>
+                }
+                else
+                {
+                    <td @onclick="() => UpdateColor(i, j)"></td>
+                }
+            }
+        </tr>
+    }
+</table>
+
+@code {
+    private List<List<int>> _grid;
+
+    private void UpdateColor(int i, int j)
+    {
+        _grid[i][j] = 1;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _grid = GridClass.GetGrid();
+        _grid[5][5] = 1;
+    }
+}
