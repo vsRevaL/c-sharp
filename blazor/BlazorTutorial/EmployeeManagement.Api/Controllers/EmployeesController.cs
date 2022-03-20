@@ -105,6 +105,26 @@ namespace EmployeeManagement.Api.Controllers
             }
         }
 
-        //Változás
+        //https://localhost:7099/api/employees/search?name=John&gender=male
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Employee>>> Search(string name, Gender? gender)
+        {
+            try
+            {
+                var result = await _employeeRepository.SearchEmployee(name, gender);
+                if (result != null && result.Any())
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return NotFound($"Employee with Name = {name} is not found.");
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+            }
+        }
     }
 }

@@ -40,6 +40,22 @@ namespace EmployeeManagement.Api.Models
         public async Task<IEnumerable<Employee>> GetEmployees() =>
             await _appDbContext.Employees.ToListAsync();
 
+        public async Task<IEnumerable<Employee>> SearchEmployee(string name, Gender? gender)
+        {
+            IQueryable<Employee> query = _appDbContext.Employees;
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(e => e.FirstName.Contains(name) || e.LastName.Contains(name));
+            }
+
+            if (gender != null)
+            {
+                query = query.Where(e => e.Gender == gender);
+            }
+
+            return await query.ToListAsync();
+        }
 
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
