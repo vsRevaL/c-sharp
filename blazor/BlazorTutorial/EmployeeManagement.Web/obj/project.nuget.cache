@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "w9vqIiTvRDHifoMPyhccv7vKNSjfW6CjelMq6/RUCqIp0KpAy88mhiiqhFzyfWKZBurnSYX4B6dgvKkUa1yAFg==",
+  "dgSpecHash": "RTId1JzyagwfCh4/k89l2vIQ9wg1GKN1tewSR4sbvQ/z9AYoshCOJwaT0/H3OpOUy251VCELZYjPgRBkhv6AkA==",
   "success": true,
   "projectFilePath": "D:\\MyGitHub\\c-sharp\\blazor\\BlazorTutorial\\EmployeeManagement.Web\\EmployeeManagement.Web.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\RevaL\\.nuget\\packages\\microsoft.aspnetcore.blazor.httpclient\\3.2.0-preview3.20168.3\\microsoft.aspnetcore.blazor.httpclient.3.2.0-preview3.20168.3.nupkg.sha512",
+    "C:\\Users\\RevaL\\.nuget\\packages\\system.net.http.json\\6.0.0\\system.net.http.json.6.0.0.nupkg.sha512",
+    "C:\\Users\\RevaL\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\RevaL\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\RevaL\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

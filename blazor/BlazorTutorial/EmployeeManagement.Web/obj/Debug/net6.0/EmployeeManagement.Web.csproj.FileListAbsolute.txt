@@ -52,3 +52,4 @@ D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.
 D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\EmployeeManagement.Web.RazorTargetAssemblyInfo.cache
 D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\EmployeeManagement.Web.RazorTargetAssemblyInfo.cs
 D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\obj\Debug\net6.0\EmployeeManagement.Web.Views.pdb
+D:\MyGitHub\c-sharp\blazor\BlazorTutorial\EmployeeManagement.Web\bin\Debug\net6.0\Microsoft.AspNetCore.Blazor.HttpClient.dll
